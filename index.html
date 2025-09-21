@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Bootstrap Core CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+      crossorigin="anonymous" />
+
+    <!-- Bootstrap Core JS + Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
+
+    <!-- Projekt Styles -->
+    <link rel="stylesheet" href="../src/styles.css" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Merriweather:wght@300;400;700&family=Roboto+Condensed:wght@300;400;700&family=Work+Sans:wght@300;400;700&display=swap"
+      rel="stylesheet" />
+
+    <!-- Bootstrap Table -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-table@1.24.2/dist/bootstrap-table.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.24.2/dist/bootstrap-table.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.24.2/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+
+    <title>Carbon-Meter</title>
+  </head>
+  <body>
+    <!-- ============================
+         Header mit Logo + Navigation
+    ============================= -->
+    <header>
+      <div class="navbar">
+        <!-- Menü-Icon (links) -->
+        <a class="menu-icon" href="#menu" aria-label="Menü">
+          <img src="../public/navbar-icon.svg" alt="Menü-Icon" />
+        </a>
+
+        <!-- Logo + Branding -->
+        <a class="brand" href="#home" aria-label="Carbon Meter-Startseite">
+          <img class="brand-logo" src="../public/logo.png" alt="Carbon-Meter Logo" />
+        </a>
+
+        <!-- Navigation -->
+        <nav aria-label="Hauptnavigation">
+          <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ============================
+         Hero Section mit Hintergrundvideo
+    ============================= -->
+    <section class="home" id="home">
+      <!-- Video im Hintergrund -->
+      <video
+        class="background-video"
+        src="../public/video.mp4"
+        autoplay
+        muted
+        loop
+        playsinline
+        aria-hidden="true"></video>
+
+      <!-- Content über dem Video -->
+      <div class="content">
+        <h1>Welcome to<br /><span>Carbon-Meter</span></h1>
+        <p>
+          Welcome to <span>Carbon-Meter</span> – a clear window into our planet's carbon
+          reality. Protecting the climate underpins healthy communities, resilient
+          economies, and a livable future.
+        </p>
+        <a href="#about">Read More</a>
+        <img class="down-arrow" src="../public/arrow.png" alt="Pfeil nach unten" />
+      </div>
+    </section>
+
+    <!-- ============================
+         Statistics Section
+    ============================= -->
+    <section>
+      <div class="container my-4 statistic-container" id="statistics">
+        <h2>Overview</h2>
+        <div class="row">
+          <!-- Linke Spalte: 4 Cards -->
+          <div class="col-md-4" id="left-column">
+            <div class="row g-3">
+              <div class="col-6">
+                <div class="card text-center p-3">
+                  <h6>Total Emissions</h6>
+                  <p class="display-6">740 Mt</p>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="card text-center p-3">
+                  <h6>Per Capita</h6>
+                  <p class="display-6">8.9 t</p>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="card text-center p-3">
+                  <h6>CO₂ per GDP</h6>
+                  <p class="display-6">0.21</p>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="card text-center p-3">
+                  <h6>Green Energy</h6>
+                  <p class="display-6">38 %</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Rechte Spalte: Graph Placeholder -->
+          <div class="col-md-8" id="right-column">
+            <div class="card p-3 h-100">
+              <h6>Graph</h6>
+              <div class="d-flex align-items-center justify-content-center h-100">
+                <span class="text-muted">[Graph Placeholder]</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================
+         Contact Section
+    ============================= -->
+    <section class="contact-section">
+      <div class="contact" id="contact">
+        <h2>Contact</h2>
+        <form>
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" required />
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="email" required />
+          </div>
+          <div class="mb-3">
+            <label for="message" class="form-label">Message</label>
+            <textarea class="form-control" id="message" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </section>
+  </body>
+</html>
