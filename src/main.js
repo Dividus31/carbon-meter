@@ -96,3 +96,7 @@ function initSnapScroll() {
 
 // Wenn du <script defer> benutzt, ist DOM bis hierhin da:
 initSnapScroll();
+
+// DataTable initialisieren
+new DataTable('#example');
+
