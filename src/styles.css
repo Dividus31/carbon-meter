@@ -9,19 +9,20 @@
 }
 
 :root {
-  --header-h: 5.75rem;
+  --header-h: 92px;
+} /* 92px = ca. 5.75rem */
+header {
+  height: var(--header-h);
 }
 
 /* Smooth Scrolling & Base */
 html {
   height: 100%;
-  overscroll-behavior-y: none;
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
+  /* scroll-snap-type entfernt */
+  /* scroll-padding-top entfernt */
 }
 
 body {
-  height: 100svh;
   min-height: 100svh;
   background-position: center;
   background-size: cover;
@@ -95,6 +96,8 @@ header {
   align-items: center;
   width: 100%;
   overflow: hidden;
+  /* scroll-snap-align entfernt */
+  /* scroll-snap-stop entfernt */
 }
 
 .background-video {
@@ -157,28 +160,36 @@ header {
 ================================== */
 section {
   font-family: 'Times New Roman', Times, serif;
-  color: #5c5c5c;
+  color: #ffffff;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
   background: linear-gradient(to bottom, #0a0f0a, #1a1a1a);
   min-height: calc(100svh - var(--header-h));
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-  scroll-margin-top: var(--header-h);
+  /* scroll-snap-align entfernt */
+  /* scroll-snap-stop entfernt */
 }
+
+/* die beiden Selektoren komplett rausgenommen:
+   section#statistics { ...snap... }
+   section:not(.home):not(#statistics) { ...snap... } */
 
 /* ==================================
    Cards (Statistics)
 ================================== */
 .card {
   background-color: #2b2b2b;
-  color: #616161;
+  color: #fff;
   border: none;
 }
 
 .statistic-container {
   max-width: 1400px;
+}
+
+.dataTables-container {
+  max-width: 1400px;
+  width: 100%;
+  margin-inline: auto;
 }
 
 /* ==================================
@@ -189,7 +200,7 @@ section {
   min-height: calc(100vh - var(--header-h));
   display: flex;
   justify-content: center;
-  color: #5f5f5f;
+  color: #ffffff;
   padding: 2rem;
 }
 
