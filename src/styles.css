@@ -1,6 +1,6 @@
-/* ==================================
-   Global Styles & Resets
-================================== */
+/* =========================
+   Global / Reset
+========================= */
 * {
   margin: 0;
   padding: 0;
@@ -10,16 +10,10 @@
 
 :root {
   --header-h: 92px;
-} /* 92px = ca. 5.75rem */
-header {
-  height: var(--header-h);
 }
 
-/* Smooth Scrolling & Base */
 html {
   height: 100%;
-  /* scroll-snap-type entfernt */
-  /* scroll-padding-top entfernt */
 }
 
 body {
@@ -28,17 +22,17 @@ body {
   background-size: cover;
 }
 
-/* ==================================
-   Header / Navigation
-================================== */
+/* =========================
+   Header / Navbar
+========================= */
 header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
+  height: var(--header-h);
   z-index: 1000;
   backdrop-filter: blur(10px);
-  height: var(--header-h);
 }
 
 .navbar {
@@ -86,9 +80,38 @@ header {
   background: rgba(255, 255, 255, 0.1);
 }
 
-/* ==================================
-   Hero Section (Video + Text)
-================================== */
+/* =========================
+   W3 Sidebar + Overlay
+   - Sidebar liegt über allem (z-index),
+     Overlay knapp darunter.
+========================= */
+.w3-sidebar {
+  background-color: #1a1a1a !important;
+  color: #fff !important;
+  z-index: 2000 !important; /* über Header */
+}
+
+.w3-overlay {
+  position: fixed; /* über gesamte Seite */
+  inset: 0; /* top/right/bottom/left = 0 */
+  z-index: 1500 !important; /* unter Sidebar, über Content */
+  background: rgba(0, 0, 0, 0.5); /* leichte Abdunkelung */
+}
+
+/* Sidebar-Links im Dark-Theme */
+.w3-sidebar .w3-button {
+  background-color: transparent !important;
+  color: #fff !important;
+  text-align: left;
+}
+
+.w3-sidebar .w3-button:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* =========================
+   Hero Section
+========================= */
 .home {
   position: relative;
   height: 100svh;
@@ -96,8 +119,6 @@ header {
   align-items: center;
   width: 100%;
   overflow: hidden;
-  /* scroll-snap-align entfernt */
-  /* scroll-snap-stop entfernt */
 }
 
 .background-video {
@@ -130,6 +151,12 @@ header {
   color: #058d00;
 }
 
+.home .content p {
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
 .home .content a {
   display: inline-block;
   color: #fff;
@@ -155,9 +182,9 @@ header {
   filter: invert(1);
 }
 
-/* ==================================
-   Sections General
-================================== */
+/* =========================
+   Sections (Grundlayout)
+========================= */
 section {
   font-family: 'Times New Roman', Times, serif;
   color: #ffffff;
@@ -165,21 +192,41 @@ section {
   flex-direction: column;
   background: linear-gradient(to bottom, #0a0f0a, #1a1a1a);
   min-height: calc(100svh - var(--header-h));
-  /* scroll-snap-align entfernt */
-  /* scroll-snap-stop entfernt */
 }
 
-/* die beiden Selektoren komplett rausgenommen:
-   section#statistics { ...snap... }
-   section:not(.home):not(#statistics) { ...snap... } */
-
-/* ==================================
-   Cards (Statistics)
-================================== */
+/* =========================
+   Cards / Statistics
+========================= */
 .card {
   background-color: #2b2b2b;
   color: #fff;
   border: none;
+}
+
+/* Linke und rechte Spalte gleich hoch strecken */
+#statistics .row {
+  align-items: stretch;
+}
+
+/* Rechte Card als Flex-Column,
+   der Chart füllt den übrigen Raum */
+#right-column .card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Chart-Container füllt die Card */
+.chart-wrap {
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 240px;
+  overflow: hidden;
+}
+
+#curve_chart {
+  width: 100%;
+  height: 100%;
 }
 
 .statistic-container {
@@ -192,9 +239,9 @@ section {
   margin-inline: auto;
 }
 
-/* ==================================
+/* =========================
    Contact Section
-================================== */
+========================= */
 .contact-section {
   background: #1a1a1a;
   min-height: calc(100vh - var(--header-h));
@@ -204,6 +251,24 @@ section {
   padding: 2rem;
 }
 
+.contact form {
+  max-width: 600px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  margin: auto;
+  padding: 1rem;
+  background-color: #2b2b2b;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.contact form label {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
 .contact h2 {
   text-align: center;
   margin-bottom: 1.5rem;
@@ -214,44 +279,85 @@ section {
 }
 
 /* ==================================
-   Media Queries
+   Media Queries für Responsive Design
 ================================== */
-@media (min-width: 1600px) {
-  .container {
-    max-width: 1400px;
-  }
-}
 
-@media (max-width: 1040px) {
-  :root {
-    --header-h: 5rem;
+/* Smartphones (Portrait & Landscape) */
+@media (max-width: 640px) {
+  body {
+    font-size: 14px;
   }
-  .brand-logo {
+
+  header {
     height: 4.5rem;
   }
-  .menu-icon {
-    width: 2.25rem;
+
+  .brand-logo {
+    height: 3rem;
   }
-  .container {
-    max-width: 1200px;
+
+  .nav-links {
+    display: none; /* Navigation ggf. ausblenden, da Sidebar vorhanden */
+  }
+
+  .chart-wrap {
+    aspect-ratio: 16 / 9;
+    height: auto;
+  }
+
+  #curve_chart {
+    height: 100%;
   }
 }
 
-@media (max-width: 640px) {
-  :root {
-    --header-h: 4.5rem;
+/* Tablets (Portrait & Landscape) */
+@media (min-width: 641px) and (max-width: 1024px) {
+  body {
+    font-size: 15px;
   }
+
+  header {
+    height: 5rem;
+  }
+
   .brand-logo {
     height: 3.5rem;
   }
-  .menu-icon {
-    width: 2rem;
+
+  .nav-links {
+    gap: 0.75rem;
   }
-  .home .content a {
-    font-size: 0.95rem;
-    padding: 8px 18px;
-  }
+
   .container {
-    max-width: 800px;
+    max-width: 900px;
+  }
+
+  /* Statistiken nebeneinander enger darstellen */
+  #left-column .card,
+  #right-column .card {
+    font-size: 0.9rem;
+  }
+}
+
+/* Kleinere PCs & Laptops */
+@media (min-width: 1025px) and (max-width: 1366px) {
+  body {
+    font-size: 16px;
+  }
+
+  header {
+    height: 5.5rem;
+  }
+
+  .brand-logo {
+    height: 4rem;
+  }
+
+  .container {
+    max-width: 1200px;
+  }
+
+  .chart-wrap {
+    aspect-ratio: 16 / 9;
   }
 }
