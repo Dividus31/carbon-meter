@@ -1,5 +1,46 @@
+// ===== Feste Dummy-Werte je Jahr (kein Zugriff auf CARBON_DATA) =====
+const YEAR_STATS = {
+  1980: { totalMt: 21000, perCapitaT: 5.8, co2PerGdp: 0.42, greenPct: 12 },
+  1990: { totalMt: 23000, perCapitaT: 6.2, co2PerGdp: 0.39, greenPct: 14 },
+  2010: { totalMt: 33000, perCapitaT: 4.9, co2PerGdp: 0.28, greenPct: 22 },
+  2025: { totalMt: 37000, perCapitaT: 4.3, co2PerGdp: 0.23, greenPct: 30 },
+};
+
+// Helfer für Formatierung
+const fmt = (n, d = 0) =>
+  Number(n).toLocaleString('de-DE', {
+    minimumFractionDigits: d,
+    maximumFractionDigits: d,
+  });
+
+// Cards updaten
+function updateCards(year) {
+  const data = YEAR_STATS[year] || YEAR_STATS[2025];
+
+  const cardTotal = document.querySelector('#card-total  .display-6');
+  const cardCapita = document.querySelector('#card-capita .display-6');
+  const cardGdp = document.querySelector('#card-gdp    .display-6');
+  const cardGreen = document.querySelector('#card-green  .display-6');
+
+  if (cardTotal) cardTotal.textContent = `${fmt(data.totalMt, 0)} Mt`;
+  if (cardCapita) cardCapita.textContent = `${fmt(data.perCapitaT, 2)} t`;
+  if (cardGdp) cardGdp.textContent = `${fmt(data.co2PerGdp, 2)}`;
+  if (cardGreen) cardGreen.textContent = `${fmt(data.greenPct, 0)} %`;
+}
+
+// Init
+document.addEventListener('DOMContentLoaded', () => {
+  const select = document.getElementById('yearSelect');
+  if (select) {
+    updateCards(select.value);
+    select.addEventListener('change', () => updateCards(select.value));
+  } else {
+    updateCards('2025');
+  }
+});
+
 document.addEventListener('DOMContentLoaded', function () {
-  // phpMyAdmin-Wrapper auflösen → tableBlock holen
+  // Datenquelle aus carbon_country_stats.js suchen
   const blocks =
     window.CARBON_DATA && Array.isArray(window.CARBON_DATA.data)
       ? window.CARBON_DATA.data
@@ -65,14 +106,14 @@ google.charts.setOnLoadCallback(drawChart);
 function drawChart() {
   var data = google.visualization.arrayToDataTable([
     ['Year', 'Green Energy', 'Carbon Fuel'],
-    ['2004', 1000, 400],
-    ['2005', 1170, 460],
-    ['2006', 660, 1120],
-    ['2007', 1030, 540],
+    ['2010', 14, 86],
+    ['2025', 19, 81],
+    ['2035', 34, 66],
+    ['2045', 70, 30],
   ]);
 
   var options = {
-    title: 'Change in Energy Consumption',
+    title: 'Change in Energy Consumption in %',
     curveType: 'function',
     legend: { position: 'bottom' },
     colors: ['#19af13', '#ff6b6b'],

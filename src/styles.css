@@ -33,6 +33,7 @@ header {
   height: var(--header-h);
   z-index: 1000;
   backdrop-filter: blur(10px);
+  font-size: large;
 }
 
 .navbar {
@@ -82,23 +83,21 @@ header {
 
 /* =========================
    W3 Sidebar + Overlay
-   - Sidebar liegt über allem (z-index),
-     Overlay knapp darunter.
 ========================= */
 .w3-sidebar {
   background-color: #1a1a1a !important;
   color: #fff !important;
-  z-index: 2000 !important; /* über Header */
+  z-index: 2000 !important;
+  font-size: large;
 }
 
 .w3-overlay {
-  position: fixed; /* über gesamte Seite */
-  inset: 0; /* top/right/bottom/left = 0 */
-  z-index: 1500 !important; /* unter Sidebar, über Content */
-  background: rgba(0, 0, 0, 0.5); /* leichte Abdunkelung */
+  position: fixed;
+  inset: 0;
+  z-index: 1500 !important;
+  background: rgba(0, 0, 0, 0.5);
 }
 
-/* Sidebar-Links im Dark-Theme */
 .w3-sidebar .w3-button {
   background-color: transparent !important;
   color: #fff !important;
@@ -140,7 +139,7 @@ header {
 }
 
 .home .content h1 {
-  font-size: clamp(2.2rem, 6vw, 4.5rem);
+  font-size: clamp(3.5rem, 8vw, 6.5rem);
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 5px;
@@ -152,7 +151,7 @@ header {
 }
 
 .home .content p {
-  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  font-size: clamp(1rem, 6.5vw, 1.5rem);
   margin-bottom: 30px;
   line-height: 1.5;
 }
@@ -183,7 +182,7 @@ header {
 }
 
 /* =========================
-   Sections (Grundlayout)
+   Sections
 ========================= */
 section {
   font-family: 'Times New Roman', Times, serif;
@@ -203,24 +202,21 @@ section {
   border: none;
 }
 
-/* Linke und rechte Spalte gleich hoch strecken */
 #statistics .row {
   align-items: stretch;
 }
 
-/* Rechte Card als Flex-Column,
-   der Chart füllt den übrigen Raum */
 #right-column .card {
-  height: 100%;
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
-/* Chart-Container füllt die Card */
 .chart-wrap {
   width: 100%;
   flex: 1 1 auto;
-  min-height: 240px;
+  min-height: 320px;
+  height: auto;
   overflow: hidden;
 }
 
@@ -244,11 +240,27 @@ section {
 ========================= */
 .contact-section {
   background: #1a1a1a;
-  min-height: calc(100vh - var(--header-h));
+  min-height: calc(100svh - var(--header-h));
   display: flex;
+  flex-direction: column;
   justify-content: center;
   color: #ffffff;
   padding: 2rem;
+}
+
+.contact-section .container {
+  margin-top: 0;
+}
+
+.contact-section .fp-overflow {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.contact-section > footer,
+.contact-section .fp-overflow > footer {
+  margin-top: auto;
 }
 
 .contact form {
@@ -269,6 +281,7 @@ section {
   margin-bottom: 0.5rem;
   font-weight: bold;
 }
+
 .contact h2 {
   text-align: center;
   margin-bottom: 1.5rem;
@@ -279,10 +292,10 @@ section {
 }
 
 /* ==================================
-   Media Queries für Responsive Design
+   Media Queries
 ================================== */
 
-/* Smartphones (Portrait & Landscape) */
+/* Smartphones */
 @media (max-width: 640px) {
   body {
     font-size: 14px;
@@ -296,8 +309,9 @@ section {
     height: 3rem;
   }
 
+  /* Navbar-Inhalte rechts ausblenden */
   .nav-links {
-    display: none; /* Navigation ggf. ausblenden, da Sidebar vorhanden */
+    display: none;
   }
 
   .chart-wrap {
@@ -310,7 +324,7 @@ section {
   }
 }
 
-/* Tablets (Portrait & Landscape) */
+/* Tablets */
 @media (min-width: 641px) and (max-width: 1024px) {
   body {
     font-size: 15px;
@@ -325,21 +339,20 @@ section {
   }
 
   .nav-links {
-    gap: 0.75rem;
+    display: none;
   }
 
   .container {
     max-width: 900px;
   }
 
-  /* Statistiken nebeneinander enger darstellen */
   #left-column .card,
   #right-column .card {
     font-size: 0.9rem;
   }
 }
 
-/* Kleinere PCs & Laptops */
+/* Kleinere Laptops */
 @media (min-width: 1025px) and (max-width: 1366px) {
   body {
     font-size: 16px;
