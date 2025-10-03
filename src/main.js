@@ -1,9 +1,9 @@
 // ===== Feste Dummy-Werte je Jahr (kein Zugriff auf CARBON_DATA) =====
 const YEAR_STATS = {
-  1980: { totalMt: 21000, perCapitaT: 5.8, co2PerGdp: 0.42, greenPct: 12 },
-  1990: { totalMt: 23000, perCapitaT: 6.2, co2PerGdp: 0.39, greenPct: 14 },
-  2010: { totalMt: 33000, perCapitaT: 4.9, co2PerGdp: 0.28, greenPct: 22 },
-  2025: { totalMt: 37000, perCapitaT: 4.3, co2PerGdp: 0.23, greenPct: 30 },
+  1980: { totalMt: 21000, perCapitaT: 5.8, co2PerGdp: 0.42, greenPct: 5 },
+  1990: { totalMt: 23000, perCapitaT: 6.2, co2PerGdp: 0.39, greenPct: 8 },
+  2010: { totalMt: 33000, perCapitaT: 4.9, co2PerGdp: 0.28, greenPct: 12 },
+  2025: { totalMt: 37000, perCapitaT: 4.3, co2PerGdp: 0.23, greenPct: 19 },
 };
 
 // Helfer für Formatierung
@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+// DataTable initialisieren
 document.addEventListener('DOMContentLoaded', function () {
   // Datenquelle aus carbon_country_stats.js suchen
   const blocks =
@@ -93,6 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
+// FullPage.js initialisieren
 new fullpage('#fullpage', {
   autoScrolling: true,
   scrollOverflow: true,
@@ -103,6 +105,7 @@ new fullpage('#fullpage', {
 google.charts.load('current', { packages: ['corechart'] });
 google.charts.setOnLoadCallback(drawChart);
 
+// Diagramm zeichnen
 function drawChart() {
   var data = google.visualization.arrayToDataTable([
     ['Year', 'Green Energy', 'Carbon Fuel'],
@@ -124,6 +127,7 @@ function drawChart() {
   chart.draw(data, options);
 }
 
+// Sidebar-Funktionen
 function w3_open() {
   document.getElementById('mySidebar').style.display = 'block';
   document.getElementById('myOverlay').style.display = 'block';

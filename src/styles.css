@@ -22,6 +22,10 @@ body {
   background-size: cover;
 }
 
+section {
+  min-height: 100svh; /* Volle Höhe minus Header, damit FullPage.js bei verschiedenen Viewports funktioniert */
+}
+
 /* =========================
    Header / Navbar
 ========================= */
@@ -54,12 +58,12 @@ header {
 }
 
 .brand-logo {
-  height: 5rem;
+  height: 6.5rem;
   object-fit: contain;
 }
 
 .menu-icon {
-  width: 2.5rem;
+  width: 3.5rem;
   margin-right: 1rem;
   cursor: pointer;
 }
@@ -68,6 +72,7 @@ header {
   list-style: none;
   display: flex;
   gap: 1.25rem;
+  font-size: 1.5rem;
 }
 
 .nav-links a {
@@ -165,7 +170,6 @@ header {
   border-radius: 6px;
   text-decoration: none;
   border: 2px solid #19af13;
-  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .home .content a:hover {
@@ -181,6 +185,75 @@ header {
   filter: invert(1);
 }
 
+/* Modal über Header & Sidebar */
+.modal {
+  z-index: 3000 !important;
+  backdrop-filter: blur(10px);
+}
+
+.modal-backdrop {
+  z-index: 2990 !important;
+}
+
+.modal-backdrop.show {
+  opacity: 0.65;
+  backdrop-filter: blur(8px);
+}
+
+.modal .modal-content {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(20px) saturate(150%);
+  color: #fff;
+  border: 1px;
+  border-radius: 1rem;
+  box-shadow: 0 20 60px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+}
+
+.modal .modal-header {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+}
+.modal-icon {
+  position: relative;
+  top: 7px;
+  color: #13860f;
+  filter: drop-shadow(0 0 5px rgba(25, 175, 19, 0.5));
+  margin-right: 0.5rem;
+  font-size: 2rem;
+  align-items: center;
+  line-height: 1;
+  display: flex;
+}
+
+.modal-body {
+  padding: 1.25rem 1.25rem 1rem;
+  font-size: 1.7rem;
+  line-height: 1.7;
+  font-family: 'Open Sans', sans-serif;
+  color: #eaeaea;
+}
+
+/* Hervorhebungen im Modal */
+.highlight-green {
+  color: #13860f;
+  font-weight: 600;
+}
+
+.modal-body p {
+  margin-bottom: 1rem;
+}
+.modal-body i {
+  color: #13860f;
+}
+
+.modal-header h5 {
+  font-size: 1.9rem;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #13860f;
+}
 /* =========================
    Sections
 ========================= */
@@ -285,92 +358,57 @@ section {
 .contact h2 {
   text-align: center;
   margin-bottom: 1.5rem;
-  font-size: 2rem;
+  font-size: 4rem;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-weight: bold;
   color: #13860f;
 }
 
+.fp-watermark {
+  display: none !important;
+}
 /* ==================================
    Media Queries
 ================================== */
 
 /* Smartphones */
 @media (max-width: 640px) {
-  body {
-    font-size: 14px;
-  }
-
   header {
-    height: 4.5rem;
+    height: 4rem;
   }
-
   .brand-logo {
-    height: 3rem;
+    height: 2.5rem;
   }
-
-  /* Navbar-Inhalte rechts ausblenden */
   .nav-links {
     display: none;
-  }
-
-  .chart-wrap {
-    aspect-ratio: 16 / 9;
-    height: auto;
-  }
-
-  #curve_chart {
-    height: 100%;
   }
 }
 
 /* Tablets */
 @media (min-width: 641px) and (max-width: 1024px) {
-  body {
-    font-size: 15px;
-  }
-
   header {
     height: 5rem;
   }
-
   .brand-logo {
-    height: 3.5rem;
+    height: 3rem;
   }
-
   .nav-links {
     display: none;
-  }
-
-  .container {
-    max-width: 900px;
-  }
-
-  #left-column .card,
-  #right-column .card {
-    font-size: 0.9rem;
   }
 }
 
 /* Kleinere Laptops */
 @media (min-width: 1025px) and (max-width: 1366px) {
-  body {
-    font-size: 16px;
-  }
-
   header {
     height: 5.5rem;
   }
-
   .brand-logo {
     height: 4rem;
   }
-
+  .nav-links {
+    display: flex;
+  }
   .container {
     max-width: 1200px;
-  }
-
-  .chart-wrap {
-    aspect-ratio: 16 / 9;
   }
 }

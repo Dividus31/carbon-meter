@@ -52,6 +52,74 @@
 
     <title>Carbon-Meter</title>
   </head>
+  <!-- ===== Modal: About Project ===== -->
+  <div class="modal fade" id="about" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="d-flex align-items-center gap-2">
+            <i class="fa fa-leaf modal-icon"></i>
+            <h5 class="modal-title mb-0">About Carbon-Meter</h5>
+          </div>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="about-item">
+            <i class="fas fa-globe-americas"></i>
+            <span>
+              <span class="highlight-green">Carbon-Meter</span> is a project dedicated to
+              tracking carbon emissions and green energy usage worldwide. Our mission is
+              to raise awareness about climate change and support global efforts to reduce
+              carbon footprints. By providing accurate and up-to-date data, we empower
+              individuals, businesses, and policymakers to make informed decisions for a
+              sustainable future.
+            </span>
+          </p>
+
+          <p class="about-item">
+            <i class="fas fa-database"></i>
+            <span>
+              <span class="highlight-green">Carbon-Meter</span> combines scientific
+              research, open data, and modern visualization tools to make climate
+              information accessible and easy to understand. We aim to highlight not only
+              the challenges but also the progress made in adopting renewable energy,
+              reducing pollution, and transitioning to greener economies.
+            </span>
+          </p>
+
+          <p class="about-item">
+            <i class="fas fa-chart-line"></i>
+            <span>
+              Through interactive charts, global comparisons, and detailed country-level
+              insights, users can explore how carbon emissions evolve over time and how
+              sustainable energy solutions impact the future of our planet. Whether you
+              are a student, a company, or a policymaker,
+              <span class="highlight-green">Carbon-Meter</span> is here to provide
+              transparency and actionable knowledge.
+            </span>
+          </p>
+
+          <p class="about-item">
+            <i class="fas fa-leaf"></i>
+            <span>
+              Together, we believe that raising awareness, sharing responsibility, and
+              supporting innovative solutions are the keys to building a healthier
+              environment and a more sustainable future for everyone.
+            </span>
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <body>
     <!-- ===== Sidebar ===== -->
@@ -167,7 +235,7 @@
             reality. Protecting the climate underpins healthy communities, resilient
             economies, and a livable future.
           </p>
-          <a href="#stats">Read More</a>
+          <a href="#" data-bs-toggle="modal" data-bs-target="#about">Read More</a>
           <img class="down-arrow" src="../public/arrow.png" alt="Pfeil nach unten" />
         </div>
       </div>
