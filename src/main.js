@@ -77,13 +77,29 @@ document.addEventListener('DOMContentLoaded', function () {
   new DataTable('#example', {
     data: rows,
     columns: [
-      { data: 'country_name', title: 'Country' },
-      { data: 'iso_code', title: 'ISO' },
-      { data: 'year', title: 'Year' },
-      { data: 'total_emissions_mt', title: 'Total Emissions (Mt)' },
-      { data: 'per_capita_t', title: 'Per Capita (t)' },
-      { data: 'co2_per_gdp', title: 'CO₂ per GDP' },
-      { data: 'green_energy_pct', title: 'Green Energy (%)' },
+      { data: 'country_name', title: 'Country', render: $.fn.dataTable.render.text() }, // XSS-Schutz
+      { data: 'iso_code', title: 'ISO', render: $.fn.dataTable.render.text() },
+      { data: 'year', title: 'Year', render: $.fn.dataTable.render.text() },
+      {
+        data: 'total_emissions_mt',
+        title: 'Total Emissions (Mt)',
+        render: $.fn.dataTable.render.number(',', '.', 0, ''),
+      },
+      {
+        data: 'per_capita_t',
+        title: 'Per Capita (t)',
+        render: $.fn.dataTable.render.number(',', '.', 2, ''),
+      },
+      {
+        data: 'co2_per_gdp',
+        title: 'CO₂ per GDP',
+        render: $.fn.dataTable.render.number(',', '.', 2, ''),
+      },
+      {
+        data: 'green_energy_pct',
+        title: 'Green Energy (%)',
+        render: $.fn.dataTable.render.number(',', '.', 0, ''),
+      },
     ],
     paging: true,
     scrollCollapse: true,
